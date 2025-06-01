@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周芷伊六一儿童节快乐！</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Marker Felt', '楷体', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffeb3b, #4fc3f7, #f48fb1);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* 气球动画 */
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+            z-index: 0;
+        }
+        
+        .balloon:before {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 20px;
+            width: 2px;
+            background: rgba(0,0,0,0.2);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0); }
+            25% { transform: translateY(-20px) translateX(5px) rotate(2deg); }
+            50% { transform: translateY(-40px) translateX(-5px) rotate(-2deg); }
+            75% { transform: translateY(-20px) translateX(3px) rotate(1deg); }
+        }
+        
+        /* 彩带动画 */
+        .ribbon {
+            position: absolute;
+            width: 20px;
+            height: 100px;
+            animation: fall 10s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            animation: bounce 2s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 4rem;
+            color: #e91e63;
+            text-shadow: 3px 3px 0 #ffeb3b, 6px 6px 0 rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            color: #2196f3;
+            margin-bottom: 30px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .card {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card h2 {
+            color: #ff5722;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            border-bottom: 3px dotted #ffeb3b;
+            padding-bottom: 10px;
+        }
+        
+        .card p {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .wishes-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .wish {
+            background: linear-gradient(45deg, #e1bee7, #bbdefb);
+            padding: 15px;
+            border-radius: 15px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .wish:hover {
+            transform: rotate(2deg);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .game-container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        
+        .game-card {
+            height: 100px;
+            background: #ffcc80;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .game-card.flipped {
+            transform: rotateY(180deg);
+            background: #fff9c4;
+        }
+        
+        .game-card.matched {
+            background: #c8e6c9;
+            transform: scale(0.95);
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #ff5722, #ff9800);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 7px 20px rgba(255, 87, 34, 0.6);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #e91e63;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            background: #ffeb3b;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .game-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态气球 -->
+    <div class="balloon" style="background:#f44336; top:10%; left:5%; animation-delay:0s;"></div>
+    <div class="balloon" style="background:#2196f3; top:20%; left:15%; animation-delay:2s;"></div>
+    <div class="balloon" style="background:#4caf50; top:5%; left:25%; animation-delay:4s;"></div>
+    <div class="balloon" style="background:#ffeb3b; top:15%; left:75%; animation-delay:1s;"></div>
+    <div class="balloon" style="background:#9c27b0; top:25%; left:85%; animation-delay:3s;"></div>
+    <div class="balloon" style="background:#ff9800; top:8%; left:65%; animation-delay:5s;"></div>
+    
+    <!-- 飘落彩带 -->
+    <div class="ribbon" style="background:#e91e63; left:10%; animation-delay:0s;"></div>
+    <div class="ribbon" style="background:#ffeb3b; left:30%; animation-delay:2s;"></div>
+    <div class="ribbon" style="background:#2196f3; left:50%; animation-delay:1s;"></div>
+    <div class="ribbon" style="background:#4caf50; left:70%; animation-delay:3s;"></div>
+    <div class="ribbon" style="background:#ff9800; left:90%; animation-delay:4s;"></div>
+    
+    <div class="container">
+        <header>
+            <h1>芷伊六一儿童节快乐！</h1>
+            <div class="subtitle">前程似锦，学习倍棒</div>
+            <div class="subtitle">🎈 祝小芷伊的最后一个儿童节节日快乐！ 🎉</div>
+        </header>
+        
+        <div class="main-content">
+            <div class="card">
+                <h2><i class="fas fa-book"></i> 给芷伊的一点话</h2>
+                <p>这个61结束以后你就不是小朋友啦，就变成少女了，嘿嘿，也意味着芷伊又要开始长身体了，这以后就不要熬夜了，芷伊争取长到165，体重嘛，保持现在就好</p>
+                <p>嘿嘿，这是我专门给你设计的网页，其实很早之前就在准备了，但是吧没有完工，直到现在才想着去搞好，其实那次给你坦白的熬夜也不全是去准备比赛，也有这个</p>
+                <p>芷伊，你的以后肯定会越来越好，我仅仅只是你生命中的过客而已，以后肯定有更好的人让你遇到，所以不用为我伤心，留念</p>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-camera"></i> 芷伊美照</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+							<img src="images/1.jpg" alt="芷伊第一好看的照片">
+                    </div>
+                    <div class="gallery-item">
+                            <img src="images/2.jpg" alt="芷伊第二好看的照片">
+                        </div>
+                    <div class="gallery-item">
+                            <img src="images/3.jpg" alt="芷伊第三好看的照片">
+                        </div>
+                    <div class="gallery-item">
+                            <img src="images/4.jpg" alt="芷伊第四好看的照片">
+                        </div>
+                </div>
+                
+                <h2 style="margin-top: 30px;"><i class="fas fa-gift"></i> 节日礼物推荐</h2>
+                <ul style="padding-left: 20px; line-height: 2;">
+                    <li>给芷伊买一条我喜欢的角色cos服</li>
+                    <li>给芷伊送上一条她喜欢的项链</li>
+                    <li>请芷伊出去玩</li>
+                    <li>让芷伊成为新娘子</li>
+                    <li>当然，上面一切都是后话了</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-heart"></i> 独属于芷伊的儿童节祝福</h2>
+                <div class="wishes-container">
+                    <div class="wish">
+                        <p>愿芷伊永远拥有一颗童心，天天开心！</p>
+                    </div>
+                    <div class="wish">
+                        <p>愿芷伊能够充满自信；往后是最开心的，无忧无虑。天天快乐！</p>
+                    </div>
+                    <div class="wish">
+                        <p>愿：小小芷伊，没有烦恼，无忧无虑，快乐成长！</p>
+                    </div>
+                    <div class="wish">
+                        <p>你的心是帆，你对我是船；每天快乐的风，吹着心的帆，载着我的船，漂向快乐的你！</p>
+                    </div>
+                </div>
+                
+                <h2 style="margin-top: 30px;"><i class="fas fa-lightbulb"></i> 给芷伊的提分小技巧</h2>
+                <p>1. 不管我在不在都要保持良好作息，听课认真</p>
+                <p>2. 初三之后游戏要少玩了哦</p>
+                <p>3. 平时写作业就专心写，不要一边刷视频一边聊天还一边写作业</p>
+                <p>4. 初三之后要开始刷题了，这样提分最快</p>
+                <p>5. 下面是给你做的一个小游戏，绝大部分时间都花在这里了</p>
+            </div>
+        </div>
+        
+        <div class="game-container">
+            <h2><i class="fas fa-gamepad"></i> 儿童节记忆配对游戏</h2>
+            <p>点击卡片找到相同的配对！看看你的记忆力有多好！</p>
+            <div class="game-board" id="gameBoard">
+                <!-- 游戏卡片由JavaScript动态生成 -->
+            </div>
+            <button class="btn" id="restartBtn"><i class="fas fa-redo"></i> 重新开始</button>
+            <p id="score">已配对: 0 对</p>
+        </div>
+        
+    </div>
+
+    <script>
+        // 记忆配对游戏逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            const gameBoard = document.getElementById('gameBoard');
+            const restartBtn = document.getElementById('restartBtn');
+            const scoreDisplay = document.getElementById('score');
+            
+            const emojis = ['🎈', '🎁', '🎉', '🎂', '🚀', '🏆', '⚽', '🎮'];
+            const cards = [...emojis, ...emojis];
+            
+            let flippedCards = [];
+            let matchedPairs = 0;
+            let score = 0;
+            
+            // 洗牌函数
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+            
+            // 初始化游戏
+            function initGame() {
+                gameBoard.innerHTML = '';
+                flippedCards = [];
+                matchedPairs = 0;
+                score = 0;
+                scoreDisplay.textContent = '已配对: 0 对';
+                
+                const shuffledCards = shuffle(cards);
+                
+                shuffledCards.forEach((emoji, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('game-card');
+                    card.dataset.emoji = emoji;
+                    card.dataset.index = index;
+                    card.innerHTML = '<span style="opacity:0">' + emoji + '</span>';
+                    
+                    card.addEventListener('click', flipCard);
+                    gameBoard.appendChild(card);
+                });
+            }
+            
+            // 翻转卡片
+            function flipCard() {
+                if (flippedCards.length === 2 || this.classList.contains('flipped') || this.classList.contains('matched')) {
+                    return;
+                }
+                
+                this.classList.add('flipped');
+                this.innerHTML = '<span>' + this.dataset.emoji + '</span>';
+                flippedCards.push(this);
+                
+                if (flippedCards.length === 2) {
+                    setTimeout(checkMatch, 500);
+                }
+            }
+            
+            // 检查是否匹配
+            function checkMatch() {
+                const card1 = flippedCards[0];
+                const card2 = flippedCards[1];
+                
+                if (card1.dataset.emoji === card2.dataset.emoji) {
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    matchedPairs++;
+                    score++;
+                    scoreDisplay.textContent = '已配对: ' + score + ' 对';
+                    
+                    if (matchedPairs === emojis.length) {
+                        setTimeout(() => {
+                            alert('恭喜你！你赢了！所有卡片都配对成功！');
+                        }, 300);
+                    }
+                } else {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    card1.innerHTML = '<span style="opacity:0">' + card1.dataset.emoji + '</span>';
+                    card2.innerHTML = '<span style="opacity:0">' + card2.dataset.emoji + '</span>';
+                }
+                
+                flippedCards = [];
+            }
+            
+            // 重新开始游戏
+            restartBtn.addEventListener('click', initGame);
+            
+            // 初始化游戏
+            initGame();
+        });
+    </script>
+</body>
+</html>
